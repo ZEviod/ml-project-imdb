@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "bolt-expo-nativewind",
-    "slug": "bolt-expo-nativewind",
+    "name": "ml-expo-nativewind",
+    "slug": "ml-expo-nativewind",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -22,16 +22,16 @@
     "experiments": {
       "typedRoutes": true
     },
-    "android": {
-      "package": "com.anonymous.boltexponativewind"
-    },
     "extra": {
       "router": {
         "origin": false
       },
       "eas": {
-        "projectId": "e7b69758-958f-4db4-b3bc-e21a72b6676e"
+        "projectId": "468022d3-6928-41f8-929a-6cc845496a19"
       }
+    },
+    "android": {
+      "package": "com.vivekpoonia.mlexponativewind"
     }
   }
 }

@@ -1,4 +1,4 @@
-package com.anonymous.boltexponativewind
+package com.vivekpoonia.mlexponativewind
 import expo.modules.splashscreen.SplashScreenManager
 
 import android.os.Build
