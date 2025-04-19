@@ -117,11 +117,11 @@ export default function HomeScreen() {
 
   // Examples for users to try
   const examples = [
-    'This product exceeded my expectations. I love it!',
-    "I'm very disappointed with the quality and service.",
-    'It was okay, not great but not terrible either.',
-    'Absolutely horrible experience. Would not recommend.',
-    "This is amazing! Best purchase I've made in years.",
+    "A cinematic masterpiece! The visual effects were stunning, and the performances were Oscar-worthy. One of the best films I've seen this year!",
+    'A complete waste of time. The plot was predictable, the acting was wooden, and the special effects were laughable.',
+    'A decent film with some good moments, but nothing particularly memorable. Worth watching once.',
+    'The cinematography was stunning, but the story felt rushed and the characters were underdeveloped.',
+    "An instant classic! The director's vision was perfectly executed and the performances were phenomenal.",
   ];
 
   const handleExamplePress = (example: string) => {
@@ -135,8 +135,8 @@ export default function HomeScreen() {
 
   return (
     <MainLayout
-      title="Sentiment Analysis"
-      subtitle="Analyze the sentiment of any text"
+      title="IMDB Review Sentiment Analysis"
+      subtitle="Analyze the sentiment of movie reviews"
       darkMode={darkMode}
     >
       <ScrollView
@@ -152,7 +152,7 @@ export default function HomeScreen() {
           <Text
             style={[styles.examplesTitle, darkMode && styles.darkExamplesTitle]}
           >
-            Try an example or write your own
+            Try a movie review example or write your own
           </Text>
           <TouchableOpacity
             onPress={toggleExpanded}
@@ -199,7 +199,7 @@ export default function HomeScreen() {
           <TextInput
             ref={textInputRef}
             style={[styles.textInput, darkMode && styles.darkTextInput]}
-            placeholder="Enter text to analyze sentiment..."
+            placeholder="Enter a movie review to analyze sentiment..."
             placeholderTextColor={darkMode ? '#94A3B8' : '#64748B'}
             multiline
             value={text}

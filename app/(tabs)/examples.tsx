@@ -23,53 +23,53 @@ export default function ExamplesScreen() {
 
   const categoryExamples = [
     {
-      category: 'Product Reviews',
+      category: 'Blockbuster Movies',
       examples: [
         {
-          text: 'This product exceeded all my expectations. The quality is outstanding and customer service was excellent!',
+          text: "A cinematic masterpiece! The visual effects were stunning, and the performances were Oscar-worthy. One of the best films I've seen this year!",
           sentiment: 'positive',
         },
         {
-          text: "I'm extremely disappointed with this purchase. It broke after one week and customer service was unhelpful.",
+          text: 'A complete waste of time. The plot was predictable, the acting was wooden, and the special effects were laughable.',
           sentiment: 'negative',
         },
       ],
     },
     {
-      category: 'Restaurant Feedback',
+      category: 'Independent Films',
       examples: [
         {
-          text: 'The food was delicious and the staff was very friendly. Will definitely come back again!',
+          text: 'A brilliant indie film with outstanding performances and a deeply moving story. The cinematography was breathtaking!',
           sentiment: 'positive',
         },
         {
-          text: "Poor service, mediocre food, and overpriced. I wouldn't recommend this place to anyone.",
+          text: "The film had potential but fell flat. Poor direction and amateurish acting made it hard to watch. Don't waste your time.",
           sentiment: 'negative',
         },
       ],
     },
     {
-      category: 'Movie Reviews',
+      category: 'Classic Movies',
       examples: [
         {
-          text: "A masterpiece of storytelling with stunning visuals and a compelling screenplay. One of the best films I've seen this year!",
+          text: 'An absolute classic that stands the test of time. The storytelling is masterful and the performances are unforgettable.',
           sentiment: 'positive',
         },
         {
-          text: 'This movie was a complete waste of time. Predictable plot, wooden acting and terrible dialogue.',
+          text: "Overrated and outdated. The pacing is slow and the story feels cliché by today's standards.",
           sentiment: 'negative',
         },
       ],
     },
     {
-      category: 'Social Media Comments',
+      category: 'Film Criticism',
       examples: [
         {
-          text: 'This post made my day! So inspiring and uplifting! Thanks for sharing!',
+          text: "The director's vision was perfectly executed. Every frame was a work of art and the score was phenomenal.",
           sentiment: 'positive',
         },
         {
-          text: 'What a terrible take. This is exactly the kind of content that ruins platforms like this.',
+          text: 'Terrible screenplay, confusing plot, and the editing was a complete mess. The director should stick to commercials.',
           sentiment: 'negative',
         },
       ],
@@ -86,8 +86,8 @@ export default function ExamplesScreen() {
 
   return (
     <MainLayout
-      title="Examples"
-      subtitle="See how sentiment analysis works with these examples"
+      title="Movie Review Examples"
+      subtitle="See how sentiment analysis works with movie reviews"
       darkMode={darkMode}
     >
       <ScrollView
@@ -111,7 +111,7 @@ export default function ExamplesScreen() {
           >
             Tap on any example to see how our sentiment analysis works. These
             examples show how the analyzer detects positive and negative
-            sentiment in different contexts.
+            sentiment in different types of movie reviews.
           </Text>
         </View>
 

@@ -90,7 +90,10 @@ export default function SettingsScreen() {
           icon: <BookOpen size={20} color="#94A3B8" />,
           label: 'Documentation',
           action: 'link',
-          onPress: () => openLink('https://docs.example.com'),
+          onPress: () =>
+            openLink(
+              'https://github.com/ZEviod/ml-project-imdb/blob/main/README.md'
+            ),
         },
         {
           icon: <Mail size={20} color="#94A3B8" />,
@@ -102,8 +105,7 @@ export default function SettingsScreen() {
           icon: <Github size={20} color="#94A3B8" />,
           label: 'GitHub Repository',
           action: 'link',
-          onPress: () =>
-            openLink('https://github.com/example/sentiment-analyzer'),
+          onPress: () => openLink('https://github.com/ZEviod/ml-project-imdb'),
         },
       ],
     },
@@ -114,7 +116,10 @@ export default function SettingsScreen() {
           icon: <Heart size={20} color="#94A3B8" />,
           label: 'About Sentiment Analyzer',
           action: 'press',
-          onPress: () => openLink('https://example.com/about'),
+          onPress: () =>
+            openLink(
+              'https://github.com/ZEviod/ml-project-imdb/blob/main/README.md#Overview'
+            ),
         },
       ],
     },

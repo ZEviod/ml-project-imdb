@@ -6,7 +6,7 @@ export function analyzeSentiment(text: string): {
   score: number;
   label: string;
 } {
-  // Simple rule-based algorithm to simulate sentiment scoring
+  // Rule-based algorithm for general sentiment analysis
   // This is just for demo purposes; a real app would use a trained model API
 
   const positiveWords: string[] = [
@@ -30,6 +30,16 @@ export function analyzeSentiment(text: string): {
     'superb',
     'impressive',
     'positive',
+    'satisfied',
+    'pleased',
+    'thrilled',
+    'ecstatic',
+    'fabulous',
+    'brilliant',
+    'exceptional',
+    'incredible',
+    'marvelous',
+    'splendid',
   ];
 
   const negativeWords: string[] = [
@@ -53,11 +63,37 @@ export function analyzeSentiment(text: string): {
     'waste',
     'annoying',
     'failure',
+    'awful',
+    'dreadful',
+    'miserable',
+    'unpleasant',
+    'unsatisfactory',
+    'inferior',
+    'lousy',
+    'unacceptable',
+    'disgusting',
+    'repulsive',
   ];
+
+  const sentimentAmplifiers: { [key: string]: number } = {
+    very: 0.2,
+    extremely: 0.3,
+    really: 0.15,
+    so: 0.15,
+    absolutely: 0.25,
+    completely: 0.2,
+    totally: 0.2,
+    incredibly: 0.25,
+    exceptionally: 0.25,
+    particularly: 0.15,
+    especially: 0.15,
+    remarkably: 0.2,
+  };
 
   const lowerText = text.toLowerCase();
   let positiveCount = 0;
   let negativeCount = 0;
+  let amplifierScore = 0;
 
   // Count positive and negative words
   positiveWords.forEach((word: string) => {
@@ -76,7 +112,16 @@ export function analyzeSentiment(text: string): {
     }
   });
 
-  // Check for negations (simple approach)
+  // Check for sentiment amplifiers
+  Object.entries(sentimentAmplifiers).forEach(([amplifier, weight]) => {
+    const regex = new RegExp(`\\b${amplifier}\\b`, 'gi');
+    const matches = lowerText.match(regex);
+    if (matches) {
+      amplifierScore += weight * matches.length;
+    }
+  });
+
+  // Check for negations
   const negations: string[] = [
     'not',
     'no',
@@ -87,6 +132,11 @@ export function analyzeSentiment(text: string): {
     'cannot',
     "can't",
     "won't",
+    'hardly',
+    'barely',
+    'scarcely',
+    'seldom',
+    'rarely',
   ];
 
   negations.forEach((negation: string) => {
@@ -96,7 +146,6 @@ export function analyzeSentiment(text: string): {
     );
     const matches = lowerText.match(regex);
     if (matches) {
-      // Reduce positive count and increase negative for negated positive words
       positiveCount -= matches.length;
       negativeCount += matches.length;
     }
@@ -110,32 +159,8 @@ export function analyzeSentiment(text: string): {
     score = positiveCount / totalWords;
   }
 
-  // Adjust based on sentiment amplifiers
-  const amplifiers: string[] = [
-    'very',
-    'extremely',
-    'really',
-    'so',
-    'absolutely',
-    'completely',
-    'totally',
-  ];
-  let amplifierCount = 0;
-
-  amplifiers.forEach((amplifier: string) => {
-    const regex = new RegExp(`\\b${amplifier}\\b`, 'gi');
-    const matches = lowerText.match(regex);
-    if (matches) {
-      amplifierCount += matches.length;
-    }
-  });
-
-  // Amplify the deviation from neutral (0.5)
-  if (amplifierCount > 0 && score !== 0.5) {
-    const deviation = score - 0.5;
-    const amplification = Math.min(amplifierCount * 0.1, 0.3); // Cap the amplification
-    score = 0.5 + deviation * (1 + amplification);
-  }
+  // Add amplifier score
+  score = Math.max(0, Math.min(1, score + amplifierScore));
 
   // Add randomness to simulate ML variability
   const randomness = Math.random() * 0.1 - 0.05; // ±0.05
