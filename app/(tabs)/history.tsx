@@ -24,8 +24,7 @@ interface HistoryItem {
   id: string;
   text: string;
   result: {
-    score: number;
-    label: string;
+    sentiment: string;
   };
   timestamp: string;
 }
@@ -151,7 +150,7 @@ export default function HistoryScreen() {
           <Text style={[styles.timestamp, darkMode && styles.darkTimestamp]}>
             {formatDate(item.timestamp)}
           </Text>
-          <SentimentBadge sentiment={item.result.label} />
+          <SentimentBadge sentiment={item.result.sentiment} />
         </View>
 
         <Text

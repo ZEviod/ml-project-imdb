@@ -38,8 +38,7 @@ export default function HomeScreen() {
   const { darkMode } = useTheme();
   const [text, setText] = useState('');
   const [sentiment, setSentiment] = useState<null | {
-    score: number;
-    label: string;
+    sentiment: string;
   }>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [expanded, setExpanded] = useState(false);
@@ -56,6 +55,7 @@ export default function HomeScreen() {
     };
   });
 
+  // Removed `score` references and updated to use only `sentiment`
   const handleAnalyze = async () => {
     if (!text.trim()) return;
 
@@ -75,7 +75,7 @@ export default function HomeScreen() {
       const historyItem = {
         id: Date.now().toString(),
         text,
-        result,
+        result: { sentiment: result.sentiment },
         timestamp: new Date().toISOString(),
       };
 
@@ -244,10 +244,7 @@ export default function HomeScreen() {
             >
               Analysis Result
             </Text>
-            <SentimentIndicator
-              score={sentiment.score}
-              label={sentiment.label}
-            />
+            <SentimentIndicator sentiment={sentiment.sentiment} />
 
             <View
               style={[
@@ -261,7 +258,7 @@ export default function HomeScreen() {
                   darkMode && styles.darkAnalysisText,
                 ]}
               >
-                {getSentimentFeedback(sentiment.score, text)}
+                {getSentimentFeedback(sentiment.sentiment, text)}
               </Text>
             </View>
           </Animated.View>
@@ -272,15 +269,11 @@ export default function HomeScreen() {
 }
 
 // Helper function to generate feedback based on sentiment score
-function getSentimentFeedback(score: number, text: string): string {
-  if (score >= 0.75) {
+function getSentimentFeedback(sentiment: string, text: string): string {
+  if (sentiment === 'positive') {
     return `The text expresses a very positive sentiment. The enthusiastic tone and positive words indicate strong approval.`;
-  } else if (score >= 0.5) {
-    return `The text conveys a generally positive sentiment. There's a favorable impression overall with some positive elements.`;
-  } else if (score > 0.4) {
-    return `The text appears to be neutral with slightly positive tendencies. The sentiment is balanced with a minor positive tilt.`;
-  } else if (score >= 0.25) {
-    return `The text conveys a generally negative sentiment. There's a sense of disappointment or dissatisfaction present.`;
+  } else if (sentiment === 'neutral') {
+    return `The text appears to be neutral with balanced sentiment.`;
   } else {
     return `The text expresses a very negative sentiment. Strong negative words and tone suggest significant dissatisfaction.`;
   }
